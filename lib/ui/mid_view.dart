@@ -26,8 +26,7 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
               color: Colors.black87,
             ),
           ),
-          Text(
-            Util.getFormattedDate(formattedDate),
+          Text("${Util.getFormattedDate(formattedDate)} (Today)",
             style: TextStyle(
               fontSize: 15,
             ),
@@ -40,7 +39,6 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
             padding: const EdgeInsets.all(8.0),
             child: getWeatherIcon(
                 weatherDescription: (forecastList?[0].weather?[0].main)!,
-                color: Colors.pinkAccent,
                 size: 198),
           ),
 
@@ -64,44 +62,54 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
           ),
           Padding(
             padding:
-                const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 12.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Text(
-                          "${((forecast?.wind?.speed)! * 1.609).toStringAsFixed(0)} km/h"),
-                      Icon(FontAwesomeIcons.wind, size: 20, color: Colors.brown)
-                      /* Icon(
-                        Icons.arrow_forward,
-                        size: 20,
-                        color: Colors.brown,
-                      ),*/
-                    ],
-                  ),
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: Icon(FontAwesomeIcons.wind, size: 20, color: Colors.grey),
+                    ),
+                    Text(
+                        "Wind: ${((forecast?.wind?.speed)! * 1.609).toStringAsFixed(0)} km/h"),
+                    /* Icon(
+                      Icons.arrow_forward,
+                      size: 20,
+                      color: Colors.brown,
+                    ),*/
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Text("${forecast?.main?.humidity?.toStringAsFixed(0)} %"),
-                      Icon(FontAwesomeIcons.solidFaceGrinBeamSweat,
-                          size: 20, color: Colors.brown)
-                    ],
-                  ),
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: Icon(FontAwesomeIcons.solidFaceGrinBeamSweat,
+                          size: 20, color: Colors.lightBlueAccent),
+                    ),
+                    Text("Humidity: ${forecast?.main?.humidity?.toStringAsFixed(0)}%"),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Text("${forecast?.main?.tempMax?.toStringAsFixed(2)} °C"),
-                      Icon(FontAwesomeIcons.temperatureHigh,
-                          size: 20, color: Colors.brown)
-                    ],
-                  ),
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: Icon(FontAwesomeIcons.temperatureHigh,
+                          size: 20, color: Colors.redAccent),
+                    ),
+                    Text("Max: ${forecast?.main?.tempMax?.toStringAsFixed(0)}°C"),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: Icon(FontAwesomeIcons.temperatureLow,
+                          size: 20, color: Colors.blueAccent),
+                    ),
+                    Text("Min: ${forecast?.main?.tempMin?.toStringAsFixed(0)}°C"),
+                  ],
                 ),
               ],
             ),
