@@ -8,14 +8,15 @@ Widget bottomView(
   return Column(
     children: [
       Text(
-        "7-days Weather forecast".toUpperCase(),
+        "Weather Forecast",
         style: TextStyle(
-          fontSize: 14,
+          fontSize: 17,
+          fontWeight: FontWeight.bold,
           color: Colors.black87,
         ),
       ),
       Container(
-        height: 170,
+        height: MediaQuery.of(context).size.height / 2.8,
         padding: EdgeInsets.symmetric(vertical: 16, horizontal: 10),
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
@@ -26,15 +27,14 @@ Widget bottomView(
           itemBuilder: (context, index) => ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Container(
-              width: MediaQuery.of(context).size.width / 2.7,
-              height: 160,
-              child: forecastCard(snapshot, index),
+              width: MediaQuery.of(context).size.width / 2.2,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                    colors: [Colors.amberAccent, Colors.white],
+                    colors: [Colors.blueAccent, Colors.lightBlueAccent],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight),
               ),
+              child: forecastCard(snapshot, index),
             ),
           ),
         ),

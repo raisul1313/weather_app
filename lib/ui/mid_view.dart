@@ -12,6 +12,14 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
       DateTime.fromMillisecondsSinceEpoch((forecastList?[0].dt)! * 1000);
   var forecast = forecastList?[0];
 
+  DateTime sunRise = DateTime.fromMillisecondsSinceEpoch(
+      (snapshot.data?.city?.sunrise)! * 1000);
+  var fullSunRiseTime = Util.getFormattedTime(sunRise);
+
+  DateTime sunSet = DateTime.fromMillisecondsSinceEpoch(
+      (snapshot.data?.city?.sunset)! * 1000);
+  var fullSunSetTime = Util.getFormattedTime(sunSet);
+
   Container midView = Container(
     child: Padding(
       padding: const EdgeInsets.all(14.0),
@@ -26,7 +34,14 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
               color: Colors.black87,
             ),
           ),
-          Text("${Util.getFormattedDate(formattedDate)} (Today)",
+          Text(
+            "${Util.getFormattedDate(formattedDate)} (Today)",
+            style: TextStyle(
+              fontSize: 15,
+            ),
+          ),
+          Text(
+            "Sun Rise: $fullSunRiseTime" ", Sun Set: $fullSunSetTime",
             style: TextStyle(
               fontSize: 15,
             ),
@@ -56,7 +71,7 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
                     fontSize: 34,
                   ),
                 ),
-                Text("${forecast?.weather?[0].description?.toUpperCase()}"),
+                Text("${forecast?.weather?[0].main?.toUpperCase()}"),
               ],
             ),
           ),
@@ -70,7 +85,8 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
-                      child: Icon(FontAwesomeIcons.wind, size: 20, color: Colors.grey),
+                      child: Icon(FontAwesomeIcons.wind,
+                          size: 20, color: Colors.brown),
                     ),
                     Text(
                         "Wind: ${((forecast?.wind?.speed)! * 1.609).toStringAsFixed(0)} km/h"),
@@ -86,9 +102,10 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: Icon(FontAwesomeIcons.solidFaceGrinBeamSweat,
-                          size: 20, color: Colors.lightBlueAccent),
+                          size: 20, color: Colors.orange),
                     ),
-                    Text("Humidity: ${forecast?.main?.humidity?.toStringAsFixed(0)}%"),
+                    Text(
+                        "Humidity: ${forecast?.main?.humidity?.toStringAsFixed(0)}%"),
                   ],
                 ),
                 Column(
@@ -98,7 +115,8 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
                       child: Icon(FontAwesomeIcons.temperatureHigh,
                           size: 20, color: Colors.redAccent),
                     ),
-                    Text("Max: ${forecast?.main?.tempMax?.toStringAsFixed(0)}°C"),
+                    Text(
+                        "Max: ${forecast?.main?.tempMax?.toStringAsFixed(0)}°C"),
                   ],
                 ),
                 Column(
@@ -108,7 +126,8 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
                       child: Icon(FontAwesomeIcons.temperatureLow,
                           size: 20, color: Colors.blueAccent),
                     ),
-                    Text("Min: ${forecast?.main?.tempMin?.toStringAsFixed(0)}°C"),
+                    Text(
+                        "Min: ${forecast?.main?.tempMin?.toStringAsFixed(0)}°C"),
                   ],
                 ),
               ],

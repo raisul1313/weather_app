@@ -297,7 +297,6 @@ class City {
     return data;
   }
 }
-
 class Coord {
   double? lat;
   double? lon;
@@ -316,3 +315,4 @@ class Coord {
     return data;
   }
 }
+

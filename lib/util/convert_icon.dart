@@ -9,20 +9,40 @@ Widget getWeatherIcon(
         return Icon(
           FontAwesomeIcons.solidSun,
           color: Colors.amber,
+          shadows: [
+            Shadow(
+                color: Colors.black,
+                blurRadius: 2.0,
+                offset: Offset.fromDirection(1.0))
+          ],
           size: size,
         );
       }
       break;
     case "Clouds":
       {
-        return Icon(FontAwesomeIcons.cloud, color: Colors.white, size: size);
+        return Icon(FontAwesomeIcons.cloud,
+            shadows: [
+              Shadow(
+                  color: Colors.black,
+                  blurRadius: 2.0,
+                  offset: Offset.fromDirection(1.0))
+            ],
+            color: Colors.lightBlueAccent,
+            size: size);
       }
       break;
     case "Rain":
       {
         return Icon(
           FontAwesomeIcons.cloudRain,
-          color: Colors.grey,
+          color: Colors.blueAccent,
+          shadows: [
+            Shadow(
+                color: Colors.black,
+                blurRadius: 2.0,
+                offset: Offset.fromDirection(1.0))
+          ],
           size: size,
         );
       }
@@ -31,7 +51,13 @@ Widget getWeatherIcon(
       {
         return Icon(
           FontAwesomeIcons.snowman,
-          color: Colors.white,
+          color: Colors.blue[50],
+          shadows: [
+            Shadow(
+                color: Colors.black,
+                blurRadius: 5.0,
+                offset: Offset.fromDirection(1.0))
+          ],
           size: size,
         );
       }
@@ -41,6 +67,12 @@ Widget getWeatherIcon(
         return Icon(
           FontAwesomeIcons.sun,
           color: Colors.amber,
+          shadows: [
+            Shadow(
+                color: Colors.black,
+                blurRadius: 2.0,
+                offset: Offset.fromDirection(1.0))
+          ],
           size: size,
         );
       }
