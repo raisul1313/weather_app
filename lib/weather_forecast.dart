@@ -31,50 +31,55 @@ class _WeatherForecastState extends State<WeatherForecast> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: [
-          textFiledView(),
-          Container(
-            child: FutureBuilder<WeatherForecastModel>(
-                future: forecastObject,
-                builder: (BuildContext context,
-                    AsyncSnapshot<WeatherForecastModel> snapshot) {
-                  if (snapshot.hasData) {
-                    return Column(
-                      children: [
-                        midView(snapshot),
-                        bottomView(snapshot, context),
-                      ],
-                    );
-                  } else {
-                    return Container(
-                      child: Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    );
-                  }
-                }),
-          )
-        ],
+      body: SafeArea(
+        child: ListView(
+          children: [
+            textFiledView(),
+            Container(
+              child: FutureBuilder<WeatherForecastModel>(
+                  future: forecastObject,
+                  builder: (BuildContext context,
+                      AsyncSnapshot<WeatherForecastModel> snapshot) {
+                    if (snapshot.hasData) {
+                      return Column(
+                        children: [
+                          MidView(snapshot: snapshot), // type 1
+                          BottomView(snapshot: snapshot), // type 1
+                          //midView(snapshot), //type 2
+                          //bottomView(snapshot, context), // type 2
+                        ],
+                      );
+                    } else {
+                      return Container(
+                        child: Center(child: CircularProgressIndicator()),
+                      );
+                    }
+                  }),
+            )
+          ],
+        ),
       ),
     );
   }
 
   Widget textFiledView() {
     return Container(
-      child: TextField(
-        decoration: InputDecoration(
-          hintText: 'Enter City Name',
-          prefixIcon: Icon(Icons.search),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-          contentPadding: EdgeInsets.all(8),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
+        child: TextField(
+          decoration: InputDecoration(
+            hintText: 'Enter City Name',
+            prefixIcon: Icon(Icons.search),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+            contentPadding: EdgeInsets.all(8),
+          ),
+          onSubmitted: (value) {
+            setState(() {
+              _cityName = value;
+              forecastObject = getWeather(cityName: _cityName);
+            });
+          },
         ),
-        onSubmitted: (value) {
-          setState(() {
-            _cityName = value;
-            forecastObject = getWeather(cityName: _cityName);
-          });
-        },
       ),
     );
   }

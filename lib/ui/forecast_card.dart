@@ -51,7 +51,7 @@ Widget forecastCard(AsyncSnapshot<WeatherForecastModel> snapshot, int index) {
               children: [
                 Text(
                     "Max: ${forecastList?[index].main?.tempMax?.toStringAsFixed(0)}°C "),
-                Icon(FontAwesomeIcons.arrowUp, size: 10, color: Colors.black87),
+                Icon(FontAwesomeIcons.arrowUp, size: 10, color: Colors.green),
               ],
             ),
             /*Text(
@@ -61,7 +61,7 @@ Widget forecastCard(AsyncSnapshot<WeatherForecastModel> snapshot, int index) {
                 Text(
                     "Min: ${forecastList?[index].main?.tempMin?.toStringAsFixed(0)}°C  "),
                 Icon(FontAwesomeIcons.arrowDown,
-                    size: 10, color: Colors.black87),
+                    size: 10, color: Colors.red),
               ],
             ),
             Text(
@@ -73,9 +73,7 @@ Widget forecastCard(AsyncSnapshot<WeatherForecastModel> snapshot, int index) {
             Text(
                 "Humidity: ${forecastList?[index].main?.humidity?.toStringAsFixed(0)}%"),
             Text(
-                "Feels Like: ${((forecastList?[index].main?.feelsLike)!).toStringAsFixed(0)}°C"),
-            Text(
-                "Pressure: ${forecastList?[index].main?.pressure?.toStringAsFixed(0)} mb"),
+                "Pressure: ${forecastList?[index].main?.pressure?.toStringAsFixed(0)} hPa"),
           ],
         ),
       )
